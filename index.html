@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EGOIST // god1v9 — i hate euw servers</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&family=Cinzel:wght@600;700;900&family=Oswald:wght@300;400;500;700&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#030303;--ink:#ececea;--muted:#7d7d7d;--silver:#cfcfcf;--line:#242424;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--ink);font-family:'Oswald',sans-serif;overflow-x:hidden;position:relative}
+  ::selection{background:#fff;color:#000}
+
+  /* cross/cathedral background over whole page */
+  .site-bg{position:fixed;inset:0;z-index:-1;
+    background:#000 url("img/header.jpeg") center/cover no-repeat;
+    filter:grayscale(1) contrast(1.15) brightness(.7);opacity:.14}
+  .site-bg::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at center,transparent 20%,#000 90%)}
+
+  /* grain + scanlines */
+  body::before{content:"";position:fixed;inset:0;z-index:9998;pointer-events:none;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/><feColorMatrix type='saturate' values='0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/></svg>");
+    opacity:.05;mix-blend-mode:overlay}
+  body::after{content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;
+    background:repeating-linear-gradient(0deg,rgba(0,0,0,0) 0,rgba(0,0,0,0) 2px,rgba(0,0,0,.2) 3px,rgba(0,0,0,0) 4px);opacity:.3}
+
+  /* ticker (black + white) */
+  .ticker{position:fixed;top:0;left:0;right:0;z-index:9997;background:#000;color:#fff;
+    font-family:'Bebas Neue',sans-serif;letter-spacing:.28em;font-size:14px;white-space:nowrap;overflow:hidden;
+    border-bottom:1px solid rgba(255,255,255,.25)}
+  .ticker span{display:inline-block;padding:7px 0;animation:scroll 20s linear infinite}
+  .ticker b{color:#666}
+  @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+  /* hero */
+  .hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;
+    text-align:center;position:relative;padding:110px 20px 60px;overflow:hidden;z-index:1}
+  .hero-bg{position:absolute;inset:0;z-index:0;
+    background:#000 url("img/header.jpeg") center/cover no-repeat;filter:grayscale(1) contrast(1.2) brightness(.5)}
+  .hero-bg::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at center,transparent 22%,#000 90%)}
+  .hero>*{position:relative;z-index:2}
+  .kicker{font-family:'Bebas Neue',sans-serif;letter-spacing:.55em;color:var(--silver);font-size:15px;margin-bottom:14px}
+  .kicker::before,.kicker::after{content:"✝";margin:0 14px;color:#fff}
+  .egoist-title{font-family:'UnifrakturCook',cursive;font-size:clamp(58px,12vw,148px);line-height:.92;color:#fff;
+    position:relative;text-shadow:0 0 30px rgba(255,255,255,.35),0 0 4px rgba(0,0,0,.9)}
+  .egoist-title::before,.egoist-title::after{content:"EGOIST";position:absolute;inset:0;color:#fff}
+  .egoist-title::before{z-index:-1;opacity:.35;animation:glitch1 3s infinite steps(2)}
+  .egoist-title::after{z-index:-2;opacity:.25;animation:glitch2 3.6s infinite steps(2)}
+  @keyframes glitch1{0%,93%,100%{transform:translate(0,0)}94%{transform:translate(-4px,2px)}97%{transform:translate(3px,-2px)}}
+  @keyframes glitch2{0%,91%,100%{transform:translate(0,0)}92%{transform:translate(4px,-1px)}98%{transform:translate(-3px,2px)}}
+  .subtitle{margin-top:20px;font-family:'Bebas Neue',sans-serif;letter-spacing:.18em;font-size:clamp(17px,3vw,28px);color:var(--ink)}
+  .subtitle b{color:#fff}
+  .handle{margin-top:8px;color:var(--muted);letter-spacing:.4em;font-family:'Bebas Neue',sans-serif;font-size:19px}
+  .handle span{color:#fff}
+  .scroll-hint{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);color:var(--muted);letter-spacing:.3em;font-family:'Bebas Neue',sans-serif;font-size:13px;animation:bob 1.8s infinite}
+  @keyframes bob{0%,100%{transform:translate(-50%,0);opacity:.5}50%{transform:translate(-50%,7px);opacity:1}}
+
+  section{padding:80px 20px;position:relative;max-width:1080px;margin:0 auto;z-index:1}
+  .sec-head{font-family:'Cinzel',serif;font-weight:900;font-size:clamp(26px,4.5vw,44px);color:#fff;text-align:center;letter-spacing:.12em}
+  .sec-head::before,.sec-head::after{content:"✝";margin:0 16px;color:var(--silver);font-size:.7em;vertical-align:middle}
+  .sec-sub{text-align:center;color:var(--silver);letter-spacing:.38em;font-family:'Bebas Neue',sans-serif;margin:10px 0 40px;font-size:16px}
+
+  /* cross divider */
+  .cross-div{display:flex;align-items:center;justify-content:center;gap:20px;max-width:1080px;margin:0 auto;opacity:.8}
+  .cross-div .l{height:1px;width:34%;background:linear-gradient(90deg,transparent,var(--silver))}
+  .cross-div .r{height:1px;width:34%;background:linear-gradient(90deg,var(--silver),transparent)}
+  .cross-div .x{color:#fff;font-size:22px;text-shadow:0 0 12px rgba(255,255,255,.5)}
+
+  /* ===== EGOIST popup recreation ===== */
+  .popup-wrap{display:flex;justify-content:center}
+  .popup{width:min(560px,100%);background:linear-gradient(180deg,rgba(10,10,10,.92),rgba(3,3,3,.95));
+    border:2px solid var(--silver);position:relative;padding:40px 34px 30px;
+    box-shadow:0 0 60px rgba(0,0,0,.9),0 0 40px rgba(255,255,255,.04)}
+  .popup::before{content:"";position:absolute;inset:7px;border:1px solid rgba(255,255,255,.2);pointer-events:none}
+  .popup h3{font-family:'UnifrakturCook',cursive;font-size:44px;color:#fff;text-align:center;letter-spacing:2px;margin-bottom:6px}
+  .popup h3::before,.popup h3::after{content:"✝";font-size:.5em;vertical-align:middle;margin:0 12px;color:var(--silver)}
+  .popup .flag{display:block;text-align:center;font-family:'Bebas Neue',sans-serif;letter-spacing:.4em;color:var(--muted);font-size:13px;margin:18px 0 8px}
+  .popup p{color:#c8c8c8;font-weight:300;font-size:18px;line-height:1.6;text-align:center;font-family:'Oswald',sans-serif}
+  .popup p .w{color:#fff;font-weight:600}
+  .popup p .g{color:#fff;font-weight:500;text-decoration:underline;text-decoration-color:rgba(255,255,255,.35);text-underline-offset:3px}
+  .popup .mini-sep{height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.4),transparent);margin:22px auto;max-width:300px}
+  .icons{display:flex;justify-content:center;gap:14px;margin-top:26px;flex-wrap:wrap}
+  .icons .ic{width:82px;text-align:center}
+  .icons .ic img{width:82px;height:82px;object-fit:cover;border:2px solid var(--silver);display:block;
+    filter:grayscale(1) contrast(1.1);transition:.2s;box-shadow:0 0 14px rgba(0,0,0,.7)}
+  .icons .ic:hover img{filter:grayscale(0) contrast(1.1);border-color:#fff;box-shadow:0 0 18px rgba(255,255,255,.4);transform:translateY(-3px)}
+  .icons .ic span{display:block;font-family:'Bebas Neue',sans-serif;letter-spacing:.14em;color:var(--muted);font-size:14px;margin-top:7px}
+  .popup .caption{text-align:center;color:var(--muted);font-style:italic;font-family:'Oswald',sans-serif;font-weight:300;margin-top:20px;font-size:15px}
+
+  /* ===== gif blocks ===== */
+  .gifband{max-width:1080px;margin:0 auto;padding:70px 20px;text-align:center}
+  .gifframe{position:relative;display:inline-block;border:2px solid var(--silver);background:#000;
+    box-shadow:0 0 40px rgba(0,0,0,.9),0 0 26px rgba(255,255,255,.05);max-width:100%}
+  .gifframe::before{content:"";position:absolute;inset:6px;border:1px solid rgba(255,255,255,.18);pointer-events:none;z-index:2}
+  .gifframe img{display:block;max-width:100%;height:auto;filter:grayscale(.15) contrast(1.05)}
+  .gif-cap{margin-top:16px;font-family:'Bebas Neue',sans-serif;letter-spacing:.3em;color:var(--silver);font-size:16px}
+  .gif-cap::before,.gif-cap::after{content:"✝";margin:0 12px;color:#fff}
+
+  /* ===== mains ===== */
+  .champs{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .champ{position:relative;overflow:hidden;border:1px solid var(--line);aspect-ratio:3/4;background:#000;cursor:crosshair}
+  .champ img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.15) brightness(.85);transition:.35s;transform:scale(1.02)}
+  .champ:hover img{filter:grayscale(0) contrast(1.15) brightness(1);transform:scale(1.09)}
+  .champ .tag{position:absolute;left:0;bottom:0;right:0;padding:16px;background:linear-gradient(0deg,#000 12%,transparent);display:flex;justify-content:space-between;align-items:flex-end}
+  .champ .tag .n{font-family:'Cinzel',serif;font-weight:900;font-size:24px;color:#fff;letter-spacing:.05em}
+  .champ .tag .r{font-family:'Bebas Neue',sans-serif;color:var(--silver);letter-spacing:.12em;font-size:14px}
+  .champ::before{content:"✝ RANK 1";position:absolute;top:11px;right:-42px;transform:rotate(45deg);
+    background:#fff;color:#000;font-family:'Bebas Neue',sans-serif;letter-spacing:.14em;padding:4px 42px;font-size:12px;z-index:3}
+
+  /* gallery */
+  .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px}
+  .gallery figure{overflow:hidden;border:1px solid var(--line);aspect-ratio:1;background:#000}
+  .gallery img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.1);transition:.4s}
+  .gallery figure:hover img{filter:grayscale(0) contrast(1.15);transform:scale(1.07)}
+
+  footer{text-align:center;padding:60px 20px 80px;border-top:1px solid var(--line);margin-top:20px;position:relative;z-index:1}
+  footer .big{font-family:'UnifrakturCook',cursive;font-size:clamp(26px,5vw,50px);color:#fff}
+  footer .big::before,footer .big::after{content:"✝";font-size:.5em;vertical-align:middle;margin:0 16px;color:var(--silver)}
+  footer .small{color:var(--muted);letter-spacing:.28em;font-family:'Bebas Neue',sans-serif;margin-top:12px;font-size:14px}
+  footer .small span{color:#fff}
+
+  @media(max-width:640px){
+    .champs{grid-template-columns:1fr}
+    .icons .ic,.icons .ic img{width:70px}
+    .icons .ic img{height:70px}
+  }
+</style>
+</head>
+<body>
+  <div class="site-bg"></div>
+
+  <div class="ticker"><span>I HATE EUW SERVERS <b>✝</b> RANK 1 YASUO <b>✝</b> RANK 1 YONE <b>✝</b> RANK 1 ZED <b>✝</b> RANK 1 TALON <b>✝</b> EGOIST <b>✝</b> god1v9 <b>✝</b> I HATE EUW SERVERS <b>✝</b> RANK 1 YASUO <b>✝</b> RANK 1 YONE <b>✝</b> RANK 1 ZED <b>✝</b> RANK 1 TALON <b>✝</b> EGOIST <b>✝</b> god1v9 <b>✝</b> </span></div>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-bg"></div>
+    <div class="kicker">EUW · CHALLENGER · EGOIST</div>
+    <h1 class="egoist-title">EGOIST</h1>
+    <div class="subtitle"><b>RANK 1 YASUO</b> · <b>YONE</b> · <b>ZED</b> · <b>TALON</b></div>
+    <div class="handle">by <span>god1v9</span></div>
+    <div class="scroll-hint">▼ AŞAĞI KAY ▼</div>
+  </header>
+
+  <!-- EGOIST POPUP RECREATION -->
+  <section id="egoist">
+    <div class="popup-wrap">
+      <div class="popup">
+        <h3>EGOIST</h3>
+
+        <span class="flag">// ENGLISH</span>
+        <p>
+          I came to <span class="w">your</span> game. Powered by <span class="g">low CD</span>,
+          <span class="g">resets</span> and <span class="g">limitless damage</span>,
+          I turn your team into shields — <span class="w">I'll hard carry your ass</span>.
+          Just <span class="w">listen to me</span> and wait to win.
+        </p>
+
+        <div class="mini-sep"></div>
+
+        <span class="flag">// TÜRKÇE</span>
+        <p>
+          Maçınıza <span class="w">ben</span> geldim. <span class="g">Düşük CD</span>,
+          <span class="g">reset</span> ve <span class="g">sınırsız hasarla</span>
+          takımını kalkan yaparım — <span class="w">götünü taşıyacağım</span>.
+          Sadece <span class="w">lafımı dinle</span> ve kazanmayı bekle.
+        </p>
+
+        <div class="icons">
+          <div class="ic"><img src="img/icon_yasuo.png" alt="Yasuo"><span>YASUO</span></div>
+          <div class="ic"><img src="img/icon_yone.png" alt="Yone"><span>YONE</span></div>
+          <div class="ic"><img src="img/icon_zed.png" alt="Zed"><span>ZED</span></div>
+          <div class="ic"><img src="img/icon_talon.png" alt="Talon"><span>TALON</span></div>
+        </div>
+        <div class="caption">( just a few examples )</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GIF 1: sinner -->
+  <div class="gifband">
+    <div class="gifframe"><img src="img/sinner.gif" alt="sinner"></div>
+    <div class="gif-cap">SINNER</div>
+  </div>
+
+  <div class="cross-div"><span class="l"></span><span class="x">✝</span><span class="r"></span></div>
+
+  <!-- MAINS -->
+  <section id="champs">
+    <h2 class="sec-head">MAINS</h2>
+    <div class="sec-sub">YASUO · ZED · TALON</div>
+    <div class="champs">
+      <div class="champ">
+        <img src="img/yasuo.jpeg" alt="Yasuo">
+        <div class="tag"><span class="n">Yasuo</span><span class="r">HARD CARRY UR ASS</span></div>
+      </div>
+      <div class="champ">
+        <img src="img/zed.png" alt="Zed">
+        <div class="tag"><span class="n">Zed</span><span class="r">HARD CARRY UR ASS</span></div>
+      </div>
+      <div class="champ">
+        <img src="img/talon.jpeg" alt="Talon">
+        <div class="tag"><span class="n">Talon</span><span class="r">HARD CARRY UR ASS</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GIF 2: SÜRTÜK meme -->
+  <div class="gifband">
+    <div class="gifframe"><img src="img/image.gif" alt="score"></div>
+    <div class="gif-cap">28 / 0 / 1 — SEN İSE 1 / 0 / 28</div>
+  </div>
+
+  <div class="cross-div"><span class="l"></span><span class="x">✝</span><span class="r"></span></div>
+
+  <!-- GALLERY -->
+  <section id="gallery">
+    <h2 class="sec-head">THE VIBE</h2>
+    <div class="sec-sub">BAD BOY · GOTHIC · HATE</div>
+    <div class="gallery">
+      <figure><img src="img/anime.jpg" alt=""></figure>
+      <figure><img src="img/hate.png" alt=""></figure>
+      <figure><img src="img/kassadin.jpeg" alt=""></figure>
+      <figure><img src="img/talon.jpeg" alt=""></figure>
+    </div>
+  </section>
+
+  <footer>
+    <div class="big">i hate euw servers</div>
+    <div class="small">god1v9 · <span>EGOIST</span> · RANK 1 YASUO · YONE · ZED · TALON</div>
+  </footer>
+
+<script>
+  const t=document.querySelector('.egoist-title');
+  setInterval(()=>{t.style.filter='blur(1.2px)';setTimeout(()=>t.style.filter='none',60);},3800);
+</script>
+</body>
+</html>
