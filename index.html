@@ -129,12 +129,41 @@
     .icons .ic,.icons .ic img{width:70px}
     .icons .ic img{height:70px}
   }
+
+  /* aliases / nicks */
+  .aliases{margin-top:14px;font-family:'Bebas Neue',sans-serif;letter-spacing:.28em;color:var(--silver);font-size:14px}
+  .aliases b{color:#fff}
+  .aliases::before{content:"a.k.a  ";color:var(--muted)}
+
+  /* statement band (NEVER ENOUGH) */
+  .statement{background:#000;border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+    padding:90px 20px;text-align:center;max-width:none;margin:0;position:relative;overflow:hidden;z-index:1}
+  .statement .wall{position:absolute;inset:0;opacity:.05;font-family:'UnifrakturCook',cursive;font-size:54px;line-height:.9;color:#fff;word-break:break-all;user-select:none;pointer-events:none}
+  .statement .never{position:relative;font-family:'UnifrakturCook',cursive;font-size:clamp(40px,9vw,110px);color:#fff;line-height:.95;text-shadow:0 0 34px rgba(255,255,255,.28)}
+  .statement .never::before,.statement .never::after{content:"✝";font-size:.32em;vertical-align:middle;margin:0 .35em;color:var(--silver)}
+  .statement .line{position:relative;margin-top:22px;font-family:'Cinzel',serif;font-weight:700;letter-spacing:.06em;font-size:clamp(18px,3.4vw,30px);color:var(--ink)}
+  .statement .line.sub{font-family:'Oswald',sans-serif;font-weight:300;font-style:italic;font-size:clamp(15px,2.6vw,22px);color:var(--muted);letter-spacing:.12em;margin-top:12px}
+  .statement .line .g{color:var(--muted);font-style:italic;font-family:'Oswald',sans-serif;font-weight:300}
+
+  /* music player */
+  .music-btn{position:fixed;right:16px;bottom:16px;z-index:10000;width:52px;height:52px;border-radius:50%;
+    background:#000;border:2px solid var(--silver);color:#fff;font-size:20px;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;box-shadow:0 0 20px rgba(0,0,0,.8),0 0 14px rgba(255,255,255,.08);
+    transition:.2s;font-family:'Oswald',sans-serif;padding:0;line-height:1}
+  .music-btn:hover{border-color:#fff;box-shadow:0 0 22px rgba(255,255,255,.45)}
+  .music-btn.playing{animation:spin 4s linear infinite}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .music-label{position:fixed;right:78px;bottom:29px;z-index:10000;font-family:'Bebas Neue',sans-serif;letter-spacing:.14em;
+    color:var(--silver);font-size:13px;background:rgba(0,0,0,.8);padding:7px 13px;border:1px solid var(--line);pointer-events:none;
+    white-space:nowrap;opacity:0;transform:translateX(8px);transition:.35s}
+  .music-label.show{opacity:1;transform:translateX(0)}
+  #yt-audio{position:fixed;left:-9999px;top:-9999px;width:1px;height:1px;opacity:0;pointer-events:none}
 </style>
 </head>
 <body>
   <div class="site-bg"></div>
 
-  <div class="ticker"><span>I HATE EUW SERVERS <b>✝</b> RANK 1 YASUO <b>✝</b> RANK 1 YONE <b>✝</b> RANK 1 ZED <b>✝</b> RANK 1 TALON <b>✝</b> EGOIST <b>✝</b> god1v9 <b>✝</b> I HATE EUW SERVERS <b>✝</b> RANK 1 YASUO <b>✝</b> RANK 1 YONE <b>✝</b> RANK 1 ZED <b>✝</b> RANK 1 TALON <b>✝</b> EGOIST <b>✝</b> god1v9 <b>✝</b> </span></div>
+  <div class="ticker"><span>I HATE EUW SERVERS <b>✝</b> NEVER ENOUGH <b>✝</b> SELFDISASTER <b>✝</b> GANGS <b>✝</b> 6GXD6 <b>✝</b> RANK 1 YASUO <b>✝</b> RANK 1 YONE <b>✝</b> RANK 1 ZED <b>✝</b> RANK 1 TALON <b>✝</b> EGOIST <b>✝</b> god1v9 <b>✝</b> I HATE EUW SERVERS <b>✝</b> NEVER ENOUGH <b>✝</b> SELFDISASTER <b>✝</b> GANGS <b>✝</b> 6GXD6 <b>✝</b> RANK 1 YASUO <b>✝</b> RANK 1 YONE <b>✝</b> RANK 1 ZED <b>✝</b> RANK 1 TALON <b>✝</b> EGOIST <b>✝</b> god1v9 <b>✝</b> </span></div>
 
   <!-- HERO -->
   <header class="hero">
@@ -143,6 +172,7 @@
     <h1 class="egoist-title">EGOIST</h1>
     <div class="subtitle"><b>RANK 1 YASUO</b> · <b>YONE</b> · <b>ZED</b> · <b>TALON</b></div>
     <div class="handle">by <span>god1v9</span></div>
+    <div class="aliases"><b>SELFDISASTER</b> · <b>GANGS</b> · <b>6GXD6</b></div>
     <div class="scroll-hint">▼ AŞAĞI KAY ▼</div>
   </header>
 
@@ -217,6 +247,16 @@
 
   <div class="cross-div"><span class="l"></span><span class="x">✝</span><span class="r"></span></div>
 
+  <!-- STATEMENT -->
+  <section class="statement">
+    <div class="wall">never enough never enough never enough never enough never enough never enough never enough never enough never enough never enough never enough never enough never enough never enough never enough never enough</div>
+    <div class="never">NEVER ENOUGH</div>
+    <div class="line">ASLA BENİM GİBİ OLAMAZSIN — <span class="g">never wanna be</span></div>
+    <div class="line sub">you'll never be like me. never wanna be.</div>
+  </section>
+
+  <div class="cross-div"><span class="l"></span><span class="x">✝</span><span class="r"></span></div>
+
   <!-- GALLERY -->
   <section id="gallery">
     <h2 class="sec-head">THE VIBE</h2>
@@ -237,6 +277,31 @@
 <script>
   const t=document.querySelector('.egoist-title');
   setInterval(()=>{t.style.filter='blur(1.2px)';setTimeout(()=>t.style.filter='none',60);},3800);
+</script>
+
+<!-- background music: Kiraw - 808s and Goth Bitches -->
+<div id="yt-audio"></div>
+<div class="music-label" id="mLabel">♫ 808s and Goth Bitches — Kiraw</div>
+<button class="music-btn" id="mBtn" title="808s and Goth Bitches — Kiraw">♫</button>
+<script src="https://www.youtube.com/iframe_api"></script>
+<script>
+  var ytPlayer, ytReady=false, wantPlay=false, playing=false;
+  var btn=document.getElementById('mBtn'), lbl=document.getElementById('mLabel');
+  function onYouTubeIframeAPIReady(){
+    ytPlayer=new YT.Player('yt-audio',{
+      height:'1',width:'1',videoId:'adWAO88YPgM',
+      playerVars:{autoplay:0,loop:1,playlist:'adWAO88YPgM',controls:0,disablekb:1,fs:0,modestbranding:1},
+      events:{'onReady':function(){ytReady=true; if(wantPlay) startMusic();}}
+    });
+  }
+  function showLabel(){ lbl.classList.add('show'); setTimeout(function(){lbl.classList.remove('show');},4000); }
+  function startMusic(){ if(!ytReady){wantPlay=true;return;} try{ytPlayer.setVolume(55);ytPlayer.playVideo();}catch(e){} playing=true; btn.classList.add('playing'); showLabel(); }
+  function stopMusic(){ if(ytReady){try{ytPlayer.pauseVideo();}catch(e){}} playing=false; btn.classList.remove('playing'); }
+  btn.addEventListener('click',function(e){ e.stopPropagation(); playing?stopMusic():startMusic(); });
+  function firstInteract(){ if(!playing) startMusic(); window.removeEventListener('click',firstInteract); window.removeEventListener('keydown',firstInteract); window.removeEventListener('scroll',firstInteract); }
+  window.addEventListener('click',firstInteract);
+  window.addEventListener('keydown',firstInteract);
+  window.addEventListener('scroll',firstInteract,{passive:true});
 </script>
 </body>
 </html>
