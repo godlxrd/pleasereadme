@@ -311,15 +311,21 @@
 <script>
   var ytPlayer, ytReady=false, wantPlay=false, playing=false;
   var btn=document.getElementById('mBtn'), lbl=document.getElementById('mLabel');
+  var TRACKS=['qiA6BsKRDFc','pfqWT1fj-1k','Z2We_yYgr3c','YgL7ZWP48BI','ZBGObmcIMcU'];
+  var tIdx=0;
   function onYouTubeIframeAPIReady(){
     ytPlayer=new YT.Player('yt-audio',{
-      height:'1',width:'1',videoId:'adWAO88YPgM',
-      playerVars:{autoplay:0,loop:1,playlist:'adWAO88YPgM',controls:0,disablekb:1,fs:0,modestbranding:1},
-      events:{'onReady':function(){ytReady=true; if(wantPlay) startMusic();}}
+      height:'1',width:'1',videoId:TRACKS[0],
+      playerVars:{autoplay:0,loop:1,playlist:TRACKS[0],controls:0,disablekb:1,fs:0,modestbranding:1,playsinline:1},
+      events:{
+        'onReady':function(){ytReady=true; if(wantPlay) startMusic();},
+        'onStateChange':function(e){ if(e.data===YT.PlayerState.ENDED){ try{ytPlayer.seekTo(0);ytPlayer.playVideo();}catch(x){} } },
+        'onError':function(e){ tIdx++; if(tIdx<TRACKS.length){ try{ytPlayer.loadVideoById(TRACKS[tIdx]); ytPlayer.unMute(); ytPlayer.setVolume(55); if(playing||wantPlay) ytPlayer.playVideo();}catch(x){} } }
+      }
     });
   }
   function showLabel(){ lbl.classList.add('show'); setTimeout(function(){lbl.classList.remove('show');},4000); }
-  function startMusic(){ if(!ytReady){wantPlay=true;return;} try{ytPlayer.setVolume(55);ytPlayer.playVideo();}catch(e){} playing=true; btn.classList.add('playing'); showLabel(); }
+  function startMusic(){ if(!ytReady){wantPlay=true;return;} try{ytPlayer.unMute();ytPlayer.setVolume(55);ytPlayer.playVideo();}catch(e){} playing=true; btn.classList.add('playing'); showLabel(); }
   function stopMusic(){ if(ytReady){try{ytPlayer.pauseVideo();}catch(e){}} playing=false; btn.classList.remove('playing'); }
   btn.addEventListener('click',function(e){ e.stopPropagation(); playing?stopMusic():startMusic(); });
   function firstInteract(){ if(!playing) startMusic(); window.removeEventListener('click',firstInteract); window.removeEventListener('keydown',firstInteract); window.removeEventListener('scroll',firstInteract); }
