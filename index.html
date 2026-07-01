@@ -158,6 +158,17 @@
     white-space:nowrap;opacity:0;transform:translateX(8px);transition:.35s}
   .music-label.show{opacity:1;transform:translateX(0)}
   #yt-audio{position:fixed;left:-9999px;top:-9999px;width:1px;height:1px;opacity:0;pointer-events:none}
+
+  /* featured framed images (Zed / Qiyana / tgk) */
+  .feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .feat{position:relative;overflow:hidden;border:2px solid var(--silver);background:#000;aspect-ratio:1;margin:0;
+    box-shadow:0 0 34px rgba(0,0,0,.9),0 0 20px rgba(255,255,255,.05)}
+  .feat::before{content:"";position:absolute;inset:6px;border:1px solid rgba(255,255,255,.18);pointer-events:none;z-index:2}
+  .feat img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.1);transition:.4s;transform:scale(1.02)}
+  .feat:hover img{filter:grayscale(0) contrast(1.12);transform:scale(1.08)}
+  .feat figcaption{position:absolute;left:0;right:0;bottom:0;padding:12px;z-index:3;text-align:center;
+    background:linear-gradient(0deg,#000 15%,transparent);font-family:'Cinzel',serif;font-weight:700;letter-spacing:.08em;color:#fff;font-size:17px}
+  @media(max-width:640px){ .feat-grid{grid-template-columns:1fr} }
 </style>
 </head>
 <body>
@@ -253,6 +264,19 @@
     <div class="never">NEVER ENOUGH</div>
     <div class="line">ASLA BENİM GİBİ OLAMAZSIN — <span class="g">never wanna be</span></div>
     <div class="line sub">you'll never be like me. never wanna be.</div>
+  </section>
+
+  <div class="cross-div"><span class="l"></span><span class="x">✝</span><span class="r"></span></div>
+
+  <!-- FEATURED: Zed + Qiyana + tgk -->
+  <section id="featured">
+    <h2 class="sec-head">FEATURED</h2>
+    <div class="sec-sub">ZED · QIYANA · @cdoxxxxxxxxx</div>
+    <div class="feat-grid">
+      <figure class="feat"><img src="img/zed_splash.jpeg" alt="Zed"><figcaption>ZED</figcaption></figure>
+      <figure class="feat"><img src="img/qiyana.jpeg" alt="Qiyana"><figcaption>QIYANA</figcaption></figure>
+      <figure class="feat"><img src="img/zed_tgk.jpeg" alt="tgk"><figcaption>@cdoxxxxxxxxx</figcaption></figure>
+    </div>
   </section>
 
   <div class="cross-div"><span class="l"></span><span class="x">✝</span><span class="r"></span></div>
